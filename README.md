@@ -19,6 +19,23 @@ Billing Software is a full-stack point-of-sale / invoicing system designed for b
 
 ---
 
+## 🌐 Live Demo
+
+This API powers the live deployed application:
+
+**URL:** https://billingsoftware-beta.vercel.app
+
+**Test Account (User role):**
+
+| Field    | Value                |
+|-----------|------------------------|
+| Email     | `new_user@gmail.com`  |
+| Password  | `12345`                |
+
+> ℹ️ This is a demo account with limited/sample data for evaluation purposes only. Please avoid entering real payment or personal information.
+
+---
+
 ## ✨ Features
 
 - 🔐 **JWT-based Authentication & Authorization** — secure login for Admin and User roles
