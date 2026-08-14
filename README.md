@@ -1,6 +1,6 @@
 # 🧾 Billing Software — Backend (Spring Boot)
 
-[![Java](https://img.shields.io/badge/Java-17-orange?logo=openjdk)](https://www.oracle.com/java/)
+[![Java](https://img.shields.io/badge/Java-21-orange?logo=openjdk)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
 [![MySQL](https://img.shields.io/badge/Database-MySQL-blue?logo=mysql)](https://www.mysql.com/)
 [![JWT](https://img.shields.io/badge/Auth-JWT-black?logo=jsonwebtokens)](https://jwt.io/)
@@ -40,7 +40,7 @@ Billing Software is a full-stack point-of-sale / invoicing system designed for b
 
 | Layer            | Technology              |
 |-------------------|--------------------------|
-| Language           | Java 17                |
+| Language           | Java 21                |
 | Framework          | Spring Boot 3.x         |
 | Security           | Spring Security + JWT   |
 | Database           | MySQL                   |
@@ -88,7 +88,7 @@ src/main/java/com/billingsoftware
 
 ### Prerequisites
 
-- Java 17+
+- Java 21+
 - Maven 3.8+
 - MySQL 8+
 - Stripe account (API keys)
@@ -97,34 +97,51 @@ src/main/java/com/billingsoftware
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/billing-software-backend.git
+git clone https://github.com/momen-tarek111/Billing_Software_BACK_END.git
 cd billing-software-backend
 ```
 
 ### 2. Configure environment variables
 
-Create an `application.properties` (or `application.yml`) file, or set the following environment variables:
+The application reads all sensitive configuration from **environment variables** — no secrets are hardcoded in `application.properties`. Set the following variables in your system, IDE run configuration, or hosting provider's environment settings:
+
+| Variable                     | Description                                  |
+|-------------------------------|-----------------------------------------------|
+| `SPRING_DATASOURCE_URL`         | JDBC URL, e.g. `jdbc:mysql://localhost:3306/billing_db` |
+| `SPRING_DATASOURCE_USERNAME`      | MySQL username                             |
+| `SPRING_DATASOURCE_PASSWORD`        | MySQL password                           |
+| `CLOUDINARY_CLOUD_NAME`               | Cloudinary cloud name                  |
+| `CLOUDINARY_API_KEY`                    | Cloudinary API key                   |
+| `CLOUDINARY_API_SECRET`                   | Cloudinary API secret              |
+| `JWT_SECRET_KEY`                            | Secret key used to sign JWTs     |
+| `STRIPE_SECRET_KEY`                           | Stripe secret API key          |
+| `PORT`                                          | Server port (defaults to `8080`) |
+
+`src/main/resources/application.properties`:
 
 ```properties
-# Database
-spring.datasource.url=jdbc:mysql://localhost:3306/billing_db
-spring.datasource.username=your_db_username
-spring.datasource.password=your_db_password
+spring.datasource.url=${SPRING_DATASOURCE_URL}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
-# JWT
-jwt.secret=your_jwt_secret_key
-jwt.expiration=86400000
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+server.servlet.context-path=/api/v1.0
+server.port=${PORT:8080}
 
-# Stripe
-stripe.api.key=your_stripe_secret_key
+cloudinary.cloud-name=${CLOUDINARY_CLOUD_NAME}
+cloudinary.api-key=${CLOUDINARY_API_KEY}
+cloudinary.api-secret=${CLOUDINARY_API_SECRET}
 
-# Cloudinary
-cloudinary.cloud_name=your_cloud_name
-cloudinary.api_key=your_api_key
-cloudinary.api_secret=your_api_secret
+jwt.secret.key=${JWT_SECRET_KEY}
+
+stripe.secret.key=${STRIPE_SECRET_KEY}
 ```
 
-> ⚠️ Never commit real credentials. Use a `.env` file or environment variables and keep `application.properties` out of version control if it contains secrets (see `.gitignore` below).
+> ⚠️ **Never commit real credentials.** This file is safe to commit as-is since it only references environment variable names. Set the actual values locally (e.g. in your IDE run configuration or a local `.env` loaded via your shell) and in your hosting provider's environment/secrets settings for production.
+
+> ℹ️ Note the API base path: because of `server.servlet.context-path=/api/v1.0`, all endpoints are served under `http://localhost:8080/api/v1.0/...`.
 
 ### 3. Build and run
 
@@ -160,7 +177,7 @@ application-local.properties
 
 ## 🔗 Related Repository
 
-- **Frontend (React + Vite):** `https://github.com/<your-username>/billing-software-frontend`
+- **Frontend (React + Vite):** `https://github.com/momen-tarek111/Billing_Software_FRONT_END.git`
 
 ---
 
@@ -178,11 +195,5 @@ application-local.properties
 **Eng. Momen Tarek**
 Software Engineer
 
-- LinkedIn: `<your-linkedin-url>`
-- GitHub: `<your-github-url>`
-
----
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
+- LinkedIn: `https://www.linkedin.com/in/momen-tarek-nagaty`
+- GitHub: `https://github.com/momen-tarek111`
