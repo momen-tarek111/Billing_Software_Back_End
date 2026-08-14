@@ -98,7 +98,7 @@ src/main/java/com/billingsoftware
 
 ```bash
 git clone https://github.com/momen-tarek111/Billing_Software_BACK_END.git
-cd billing-software-backend
+cd Billing_Software_BACK_END
 ```
 
 ### 2. Configure environment variables
@@ -177,7 +177,7 @@ application-local.properties
 
 ## 🔗 Related Repository
 
-- **Frontend (React + Vite):** `https://github.com/momen-tarek111/Billing_Software_FRONT_END.git`
+- **Frontend (React + Vite):** https://github.com/momen-tarek111/Billing_Software_FRONT_END
 
 ---
 
@@ -195,5 +195,5 @@ application-local.properties
 **Eng. Momen Tarek**
 Software Engineer
 
-- LinkedIn: `https://www.linkedin.com/in/momen-tarek-nagaty`
-- GitHub: `https://github.com/momen-tarek111`
+- LinkedIn: https://www.linkedin.com/in/momen-tarek-nagaty
+- GitHub: https://github.com/momen-tarek111
